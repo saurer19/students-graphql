@@ -1,0 +1,37 @@
+<app-search-bar
+  [search]="search"
+  (searchEmitter)="updateSearch($event)"
+></app-search-bar>
+<div class="px-4">
+  <div *ngIf="!search && loading">
+    <div class="jumbotron">
+      <h1 class="display-4">Student List</h1>
+      <p class="lead">
+        You can search for any student using the first name, last name or both.
+      </p>
+    </div>
+  </div>
+  <div *ngIf="loading && search">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="error">
+    Error :(
+  </div>
+  <div *ngIf="students">
+    <ul class="list-group">
+      <li
+        *ngFor="let student of students"
+        [routerLink]="['/student', student.id]"
+        class="list-group-item d-flex justify-content-between"
+        (mouseenter)="hover = student.id"
+        (mouseleave)="hover = ''"
+        [class.list-group-item-secondary]="student.id === hover"
+      >
+        <div>{{ student.first }} {{ student.last }}</div>
+        <div>
+          {{ gradeAvg(student.grades) }}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

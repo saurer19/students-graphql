@@ -1,0 +1,22 @@
+
+type Student {
+  id: ID! @id
+  email: String! @unique
+  first: String!
+  last: String!
+  grades: [Grade!]! @relation(name: "StudentGrade", onDelete: CASCADE)
+}
+
+
+
+type Grade {
+  id: ID! @id
+  grade: Float!
+  student: Student! @relation(link: INLINE, name:"StudentGrade")
+  classroom: Classroom! @relation(link: INLINE)
+}
+
+type Classroom {
+  id: ID! @id
+  name: String! @unique
+}

@@ -1,0 +1,25 @@
+
+type Student {
+  id: ID! 
+  email: String! 
+  first: String!
+  last: String!
+  grades: [Grade!]! 
+}
+
+type Grade {
+  id: ID! 
+  grade: Float!
+  student: Student! 
+  classroom: Classroom! 
+}
+
+type Classroom {
+  id: ID!
+  name: String! 
+}
+type Query {
+  students: [Student!]!
+  student(id: ID!): Student
+  StudentFilter(searchString: String): [Student!]!
+}
