@@ -10,7 +10,7 @@
 <div *ngIf="error">
   Error :(
 </div>
-<div *ngIf="student" class="px-4">
+<div *ngIf="student$ | async as student" class="px-4">
   <div class="d-flex justify-content-between ">
     <div>
       <h1>{{ student.first }} {{ student.last }}</h1>
